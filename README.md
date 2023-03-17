@@ -1,2 +1,3 @@
 # Bug-Bounty
-Bug bounty program application
+
+Bug bounty program application - backend (API)
