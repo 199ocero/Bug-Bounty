@@ -20,8 +20,8 @@ class ProgramController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|unique:programs',
-            'pentesting_start_date' => 'required|date_format:Y-m-d H:i',
-            'pentesting_end_date' => 'required|date_format:Y-m-d H:i',
+            'pentesting_start_date' => 'required|date',
+            'pentesting_end_date' => 'required|date',
         ]);
 
         $validatedData['user_id'] = $request->user()->id;
