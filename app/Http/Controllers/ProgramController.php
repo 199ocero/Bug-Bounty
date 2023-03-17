@@ -91,20 +91,15 @@ class ProgramController extends Controller
 
         $validatedData = $request->validate([
             'name' => 'required|unique:programs,id,' . $id,
-            'pentesting_start_date' => 'required|date_format:Y-m-d H:i:s',
-            'pentesting_end_date' => 'required|date_format:Y-m-d H:i:s',
+            'pentesting_start_date' => 'required|date',
+            'pentesting_end_date' => 'required|date',
         ]);
-
 
         $program->update($validatedData);
 
         return response()->json([
             'message' => 'Program updated successfully.',
-            'name' => $request->name,
-            'pentesting_start_date' => $request->pentesting_start_date,
-            'pentesting_end_date' => $request->pentesting_end_date,
-            'user_id' => $request->user()->id,
-            // 'data' => $program,
+            'data' => $program,
         ]);
     }
 
