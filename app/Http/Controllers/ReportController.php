@@ -35,9 +35,12 @@ class ReportController extends Controller
             ], 404);
         }
 
+        $validatedData['user_id'] = $request->user()->id;
+
         $report = Report::create($validatedData);
 
         $report->load('program');
+        $report->load('user');
 
         return response()->json($report);
     }
@@ -47,6 +50,15 @@ class ReportController extends Controller
         $report->load('program');
 
         return response()->json($report);
+    }
+
+    public function showAllByUser(Request $request)
+    {
+        $reports = Report::latest()->where('user_id', $request->user()->id)->get();
+
+        return response()->json([
+            'data' => $reports,
+        ]);
     }
 
     public function update(Request $request, Report $report)
