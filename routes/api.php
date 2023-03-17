@@ -19,6 +19,8 @@ use App\Http\Controllers\AuthController;
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('program', ProgramController::class);
     Route::resource('report', ReportController::class);
+
+    Route::post('logout', [AuthController::class, 'logout']);
 });
 
 Route::post('login', [AuthController::class, 'login']);
