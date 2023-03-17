@@ -20,8 +20,16 @@ return new class extends Migration {
             $table->enum('severity', ['Critical', 'High', 'Medium', 'Low', 'None']);
             $table->enum('status', ['New', 'Resolved']);
             $table->timestamps();
-            $table->foreign('program_id')->references('id')->on('programs');
-            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->foreign('program_id')
+                ->references('id')
+                ->on('programs')
+                ->onDelete('cascade');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
 
 
