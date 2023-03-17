@@ -44,8 +44,12 @@ class ProgramController extends Controller
             ], 404);
         }
 
-        $program->load('user');
-        $program->load('report');
+        $program->load([
+            'user',
+            'report' => function ($query) {
+                $query->latest()->with('user');
+            }
+        ]);
 
         return response()->json([
             'data' => $program,
@@ -62,8 +66,12 @@ class ProgramController extends Controller
             ], 404);
         }
 
-        $program->load('user');
-        $program->load('report');
+        $program->load([
+            'user',
+            'report' => function ($query) {
+                $query->latest()->with('user');
+            }
+        ]);
 
         return response()->json([
             'data' => $program,
