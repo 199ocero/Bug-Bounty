@@ -52,13 +52,40 @@ class ProgramController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function showByUser(Request $request, $program_id)
     {
-        $program = Program::find($id);
+        $program = Program::where('id', $program_id)->where('user_id', $request->user()->id)->first();
 
         if (!$program) {
             return response()->json([
-                'error' => 'Program not found',
+                'error' => 'Program not found in this user.',
+            ], 404);
+        }
+
+        $program->load('user');
+        $program->load('report');
+
+        return response()->json([
+            'data' => $program,
+        ]);
+    }
+
+    public function showAllByUser(Request $request)
+    {
+        $programs = Program::latest()->where('user_id', $request->user()->id)->get();
+
+        return response()->json([
+            'data' => $programs,
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $program = Program::where('id', $id)->where('user_id', $request->user()->id)->first();
+
+        if (!$program) {
+            return response()->json([
+                'error' => 'Program not found in this user.',
             ], 404);
         }
 
@@ -70,21 +97,19 @@ class ProgramController extends Controller
 
         $program->update($validatedData);
 
-        $program->load('report');
-
         return response()->json([
             'message' => 'Program updated successfully.',
             'data' => $program,
         ]);
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $program = Program::find($id);
+        $program = Program::where('id', $id)->where('user_id', $request->user()->id)->first();
 
         if (!$program) {
             return response()->json([
-                'error' => 'Program not found.',
+                'error' => 'Program not found in this user.',
             ], 404);
         }
 

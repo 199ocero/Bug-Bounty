@@ -18,6 +18,9 @@ use App\Http\Controllers\AuthController;
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('program', ProgramController::class);
+    Route::get('program/{program_id}/user', [ProgramController::class, 'showByUser']);
+    Route::get('program/user/all', [ProgramController::class, 'showAllByUser']);
+
     Route::resource('report', ReportController::class);
 
     Route::post('logout', [AuthController::class, 'logout']);
