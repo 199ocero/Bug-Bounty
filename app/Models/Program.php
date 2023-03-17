@@ -10,6 +10,7 @@ class Program extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'name',
         'pentesting_start_date',
         'pentesting_end_date',

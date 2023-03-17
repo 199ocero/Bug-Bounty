@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Program;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProgramController extends Controller
 {
@@ -23,6 +24,8 @@ class ProgramController extends Controller
             'pentesting_start_date' => 'required|date_format:Y-m-d H:i:s',
             'pentesting_end_date' => 'required|date_format:Y-m-d H:i:s',
         ]);
+
+        $validatedData['user_id'] = Auth::id();
 
         $program = Program::create($validatedData);
 

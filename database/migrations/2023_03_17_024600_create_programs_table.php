@@ -14,10 +14,12 @@ return new class extends Migration {
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->dateTime('pentesting_start_date');
             $table->dateTime('pentesting_end_date');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
