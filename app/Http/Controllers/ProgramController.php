@@ -9,7 +9,7 @@ class ProgramController extends Controller
 {
     public function index()
     {
-        $programs = Program::latest()->get();
+        $programs = Program::latest()->with('user')->get();
 
         return response()->json([
             'data' => $programs,
