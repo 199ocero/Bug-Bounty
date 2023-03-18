@@ -10,35 +10,30 @@ To install the Bug-Bounty project, please follow the steps below:
 
    ```
    git clone https://github.com/199ocero/Bug-Bounty-Backend.git
-
    ```
 
 2. Change into the project directory by running:
 
    ```
    cd Bug-Bounty
-
    ```
 
 3. Run the following command to install the project dependencies:
 
    ```
    composer install
-
    ```
 
 4. Create a copy of the `.env.example` file and rename it to `.env`:
 
    ```
    cp .env.example .env
-
    ```
 
 5. Generate an app encryption key:
 
    ```
    php artisan key:generate
-
    ```
 
 6. Create an empty database for the application, and update the database configuration details in the `.env` file.
@@ -46,14 +41,12 @@ To install the Bug-Bounty project, please follow the steps below:
 
    ```
    php artisan migrate
-
    ```
 
 8. Finally, start the application by running:
 
    ```
    php artisan serve
-
    ```
 
 ## Usage
