@@ -15,7 +15,7 @@ To install the Bug-Bounty project, please follow the steps below:
 2. Change into the project directory by running:
 
    ```
-   cd Bug-Bounty
+   cd Bug-Bounty-Backend
    ```
 
 3. Run the following command to install the project dependencies:
