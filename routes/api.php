@@ -22,6 +22,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('program/user/all', [ProgramController::class, 'showAllByUser']);
 
     Route::resource('report', ReportController::class);
+    Route::get('report/{report_id}/user', [ReportController::class, 'showByUser']);
     Route::get('report/user/all', [ReportController::class, 'showAllByUser']);
 
     Route::post('logout', [AuthController::class, 'logout']);
